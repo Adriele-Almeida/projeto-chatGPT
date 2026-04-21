@@ -1,13 +1,337 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Projeto no ChatGPT</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Projeto no ChatGPT - O que é, para que serve e como usar</title>
+  <style>
+    :root{--bg:#F4F1EA;--card:#EAE6DF;--text:#3e2c20;--body:#4a3f35;--muted:#7A5E4B;--accent:#d4a373;--line:rgba(62,44,32,.12)}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+    body{line-height:1.7}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+    .hero,.section{background:linear-gradient(180deg,#f6f3ee 0%,#f3efe8 100%);border:1px solid rgba(255,255,255,.6);box-shadow:12px 12px 24px rgba(0,0,0,.04),-12px -12px 24px rgba(255,255,255,.7);border-radius:28px}
+    .hero{padding:28px 22px;margin-bottom:20px}
+    .hero-mark,.section-mark{display:inline-flex;align-items:center;justify-content:center;background:var(--card);color:var(--accent);box-shadow:6px 6px 14px rgba(0,0,0,.06),-6px -6px 14px rgba(255,255,255,.88)}
+    .hero-mark{width:74px;height:74px;border-radius:22px;font-size:28px;margin-bottom:20px}
+    .section-mark{width:54px;height:54px;border-radius:18px;font-size:20px;margin-bottom:18px}
+    h1{margin:0 0 10px;font-size:34px;line-height:1.08;letter-spacing:-.03em}
+    .subtitle-main{margin:0 0 24px;color:var(--accent);font-size:22px;font-weight:800}
+    .intro-block{margin:0 0 14px;padding:16px 18px;border-radius:20px;background:var(--card);color:var(--body);font-size:17px;font-weight:600;box-shadow:inset 2px 2px 4px rgba(255,255,255,.55),inset -2px -2px 4px rgba(0,0,0,.03)}
+    .toc{position:sticky;top:12px;background:var(--card);padding:18px;border-radius:24px;margin-bottom:20px;border:1px solid rgba(255,255,255,.7)}
+    .toc h2{margin:0 0 14px;font-size:16px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .toc a{display:block;text-decoration:none;color:var(--text);padding:10px 12px;border-radius:14px;background:#f7f4ef;margin-bottom:8px;font-weight:700;font-size:14px}
+    .toc a:hover{background:#efe9df}
+    .grid{display:grid;grid-template-columns:1fr;gap:20px}
+    .section{padding:24px 22px}
+    .section h2{margin:0 0 22px;padding-bottom:14px;border-bottom:1px solid rgba(212,163,115,.34);font-size:28px;line-height:1.15;letter-spacing:-.02em;position:relative}
+    .section h2::after{content:"";position:absolute;left:0;bottom:-1px;width:84px;height:3px;background:var(--accent);border-radius:999px}
+    .section h3{margin:28px 0 12px;font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);opacity:.85}
+    p{margin:0 0 16px;color:var(--body);font-size:17px;white-space:pre-line}
+    ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:12px}
+    li{display:flex;align-items:flex-start;gap:12px;background:var(--card);padding:14px 16px;border-radius:16px;color:var(--body);font-size:16px;box-shadow:inset 2px 2px 4px rgba(255,255,255,.5),inset -2px -2px 4px rgba(0,0,0,.02)}
+    li::before{content:"•";color:var(--accent);font-weight:900;font-size:20px;line-height:1}
+    blockquote{margin:0 0 22px;padding:16px 18px;border-left:4px solid var(--accent);border-radius:0 16px 16px 0;background:var(--card);color:#5D4037;font-size:15px;font-style:italic;box-shadow:inset 2px 2px 5px rgba(0,0,0,.05),inset -2px -2px 5px rgba(255,255,255,.6);white-space:pre-line}
+    .signature{margin-top:18px;text-align:center;font-size:11px;letter-spacing:.18em;color:var(--muted);font-weight:700;opacity:.75}
+    @media (min-width: 980px){
+      .grid{grid-template-columns:300px 1fr;align-items:start}
+      .wrap{padding:28px}
+      h1{font-size:56px}
+      .subtitle-main{font-size:28px}
+      .hero{padding:38px}
+      .section{padding:34px}
+      .section h2{font-size:38px}
+      p{font-size:18px}
+      .intro-block{font-size:22px;padding:0;background:transparent;box-shadow:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero" id="topo">
+      <div class="hero-mark">✦</div>
+      <h1>Projeto no ChatGPT</h1>
+      <div class="subtitle-main">O que é, para que serve e como usar</div>
+      <p class="intro-block">No ChatGPT, Projeto é um espaço de trabalho organizado para um tema contínuo.</p>
+      <p class="intro-block">Nesse espaço, ficam reunidos conversas, arquivos e instruções, para que o ChatGPT mantenha o contexto e continue o trabalho sem precisar recomeçar do zero a cada chat.</p>
+      <p class="intro-block">Projetos são como workspaces (espaços de trabalho) inteligentes para trabalhos de longo prazo, com memória, arquivos e instruções no mesmo lugar.</p>
+    </section>
+
+    <div class="grid">
+      <aside class="toc">
+        <h2>Índice</h2>
+        <a href="#s1">1. Conceito simples</a>
+        <a href="#s2">2. Para que serve</a>
+        <a href="#s3">3. Como isso se aplica a operações desse tipo</a>
+        <a href="#s4">4. O que um Projeto resolve nesse contexto</a>
+        <a href="#s5">5. Como usar um Projeto no ChatGPT</a>
+        <a href="#s6">6. Exemplo aplicado ao caso Citroën</a>
+        <a href="#s7">7. Exemplo aplicado</a>
+        <a href="#s8">8. O modelo aplicado na aula e como ampliar</a>
+        <a href="#s9">9. Quando usar Projeto e quando não usar</a>
+        <a href="#s10">10. Resumo final</a>
+        <a href="#topo">Voltar ao topo</a>
+      </aside>
+
+      <main>
+        <section class="section" id="s1">
+          <div class="section-mark">◆</div>
+          <h2>1. Conceito simples</h2>
+          <p>Pensando de forma prática:</p>
+          <ul>
+            <li>Chat solto = conversa avulsa</li>
+            <li>Projeto = ambiente fixo de trabalho</li>
+          </ul>
+          <p>Projeto é indicado quando existe:</p>
+          <ul>
+            <li>Contexto que precisa continuar</li>
+            <li>Arquivos de referência</li>
+            <li>Etapas de trabalho</li>
+            <li>Reaproveitamento de padrão</li>
+            <li>Necessidade de manter coerência entre várias conversas</li>
+          </ul>
+        </section>
+
+        <section class="section" id="s2">
+          <div class="section-mark">◆</div>
+          <h2>2. Para que serve</h2>
+          <h3>Guardar contexto</h3>
+          <p>O Projeto mantém arquivos, chats e instruções no mesmo lugar.</p>
+          <p>Isso evita repetir briefing, explicar o cenário de novo e reenviar os mesmos materiais.</p>
+          <h3>Continuar um trabalho que não acaba em uma conversa</h3>
+          <p>Projetos foram pensados para trabalhos que evoluem com o tempo, como planejamento, pesquisa, escrita e organização de entregas.</p>
+          <h3>Padronizar as respostas</h3>
+          <p>É possível adicionar instruções do Projeto.</p>
+          <p>Assim, o ChatGPT passa a responder seguindo uma lógica fixa daquele ambiente.</p>
+          <h3>Reunir material de apoio</h3>
+          <p>Dentro do Projeto podem ficar:</p>
+          <ul>
+            <li>PDFs</li>
+            <li>Imagens</li>
+            <li>Planilhas</li>
+            <li>Documentos</li>
+            <li>Chats antigos movidos para dentro dele</li>
+          </ul>
+          <h3>Retomar de onde parou</h3>
+          <p>Projetos têm memória integrada, justamente para manter continuidade dentro daquele espaço.</p>
+        </section>
+
+        <section class="section" id="s3">
+          <div class="section-mark">◆</div>
+          <h2>3. Como isso se aplica a operações desse tipo</h2>
+          <p>Pelo material-base, trata-se de uma atuação como ponte entre negócio e treinamento, transformando necessidades da empresa em solução educacional, coordenando fornecedor, validação, cronograma, orçamento, comunicação e apresentação estratégica do projeto até a entrega final.</p>
+          <p>Em resumo: não é apenas execução operacional; é orquestração da solução educacional.</p>
+          <p>Também fica claro que o fluxo real envolve várias etapas conectadas:</p>
+          <ul>
+            <li>Identificação da necessidade</li>
+            <li>Briefing</li>
+            <li>Proposta técnica e comercial</li>
+            <li>Reorganização do cronograma</li>
+            <li>Alinhamento com comunicação</li>
+            <li>Apresentações para diferentes fóruns</li>
+            <li>Validações até a entrega final</li>
+          </ul>
+          <p>Além disso, existe um gargalo importante: parte do tempo é consumida em resumos estratégicos, PPTs e muitas reuniões, especialmente porque há necessidade de adaptar a mesma estratégia para públicos diferentes externo e liderança.</p>
+          <p>Por isso, em operações com esse perfil, Projeto no ChatGPT faz muito sentido.</p>
+        </section>
+
+        <section class="section" id="s4">
+          <div class="section-mark">◆</div>
+          <h2>4. O que um Projeto resolve nesse contexto</h2>
+          <h3>Evita retrabalho</h3>
+          <p>Sem Projeto, cada nova demanda tende a começar com:</p>
+          <blockquote>"Qual era o briefing?"
+"Qual era a dor?"
+"Qual era o objetivo?"
+"Qual é o público?"
+"Qual era a versão resumida?"
+"Qual era a versão detalhada?"</blockquote>
+          <p>Com Projeto, esse contexto já fica organizado no mesmo ambiente.</p>
+          <h3>Ajuda a transformar processo em sistema</h3>
+          <p>O briefing da Citroën mostra um caso com dor clara, objetivo definido, indicadores impactados, público, restrições e entregáveis. Isso é exatamente o tipo de material que funciona bem dentro de um Projeto, porque não é uma pergunta isolada: é uma cadeia de construção.</p>
+          <h3>Facilita versões diferentes do mesmo conteúdo</h3>
+          <p>Na coleta de informações, aparece que uma mesma estratégia precisa ser apresentada de formas diferentes:</p>
+          <ul>
+            <li>Uma versão mais macro para público externo</li>
+            <li>Outra muito mais profunda para liderança</li>
+          </ul>
+          <p>Projeto ajuda porque mantém o mesmo contexto central, mas permite gerar saídas diferentes conforme o público.</p>
+        </section>
+
+        <section class="section" id="s5">
+          <div class="section-mark">◆</div>
+          <h2>5. Como usar um Projeto no ChatGPT</h2>
+          <h3>Etapa 1. Criar um Projeto</h3>
+          <p>Criar um Projeto com nome claro, ligado ao trabalho real.</p>
+          <p>Exemplos:</p>
+          <ul>
+            <li>On Demand Citroën</li>
+            <li>Estratégias de Treinamento Stellantis</li>
+            <li>Resumo Executivo para Fóruns</li>
+          </ul>
+          <p>Como criar o projeto: pelo menu lateral e, depois, adicionar arquivos, instruções e conversas relacionadas.</p>
+          <h3>Etapa 2. Inserir os arquivos-base</h3>
+          <p>Entram no Projeto os materiais que sustentam a demanda, por exemplo:</p>
+          <ul>
+            <li>Ficha de briefing</li>
+            <li>Proposta técnica e comercial</li>
+            <li>Cronograma</li>
+            <li>Orçamento</li>
+            <li>Apresentação-resumo</li>
+            <li>Referência de comunicação</li>
+            <li>Prints com modelos aprovados</li>
+          </ul>
+          <h3>Etapa 3. Definir instruções do Projeto</h3>
+          <p>Aqui entra a lógica fixa do ambiente.</p>
+          <p>Exemplo simples de instrução:</p>
+          <blockquote>Este projeto serve para apoiar a construção de soluções educacionais corporativas.
+Sempre organizar a resposta em etapas.
+Sempre considerar briefing, objetivo, dor, público, entregáveis e validação.
+Quando houver apresentação, gerar também uma versão resumida para público externo e outra aprofundada para liderança.</blockquote>
+          <h3>Etapa 4. Trabalhar por conversas dentro do mesmo Projeto</h3>
+          <p>Um mesmo Projeto pode ter vários chats
+Por exemplo:</p>
+          <ul>
+            <li>Chat 1: leitura do briefing</li>
+            <li>Chat 2: proposta técnica</li>
+            <li>Chat 3: resumo para cliente</li>
+            <li>Chat 4: versão para líderes</li>
+            <li>Chat 5: comunicação interna</li>
+            <li>Chat 6: estrutura de slides</li>
+          </ul>
+          <p>Tudo continua dentro do mesmo ambiente.</p>
+          <p>Dica: É possivel mover conversas úteis para dentro do Projeto
+Conversas que você abre fora do projeto podem ser movidos para um Projeto, herdando as instruções e o contexto daquele espaço.</p>
+        </section>
+
+        <section class="section" id="s6">
+          <div class="section-mark">◆</div>
+          <h2>6. Exemplo aplicado ao caso Citroën</h2>
+          <p>O briefing do caso Citroën traz uma demanda clara: baixa maturidade comercial, alto turnover, ausência de lançamentos, necessidade de fortalecer pertencimento à marca, melhorar conversão e NPS, além de desenvolver a jornada do lead à entrega com foco prático, inclusive em vendas diretas LVC e PME.</p>
+          <h3>Como esse Projeto poderia funcionar</h3>
+          <p>Nome do Projeto:
+On Demand Citroën</p>
+          <p>Arquivos dentro dele:</p>
+          <ul>
+            <li>Briefing Citroën</li>
+            <li>Cronograma</li>
+            <li>Orçamento</li>
+            <li>Estratégia educacional</li>
+            <li>Resumos aprovados</li>
+            <li>Referências de apresentação</li>
+          </ul>
+          <p>Instrução do Projeto:</p>
+          <blockquote>Sempre transformar o contexto em saídas aplicáveis para solução educacional presencial de vendas, com versão macro e versão detalhada.</blockquote>
+          <p>Pedidos possíveis dentro desse Projeto:</p>
+          <ul>
+            <li>Resumir a dor central em 1 parágrafo</li>
+            <li>Transformar o briefing em proposta executiva</li>
+            <li>Separar módulos do treinamento</li>
+            <li>Criar versão de apresentação para cliente</li>
+            <li>Criar versão detalhada para líderes</li>
+            <li>Listar o que ainda precisa de validação</li>
+            <li>Converter o briefing em estrutura de slides</li>
+            <li>Gerar texto de apoio para comunicação</li>
+          </ul>
+        </section>
+
+        <section class="section" id="s7">
+          <div class="section-mark">◆</div>
+          <h2>7. Exemplo aplicado</h2>
+          <p>Na coleta de informações, fica explícito que um dos principais gargalos é o tempo gasto com PPTs e reuniões para apresentar a estratégia em vários fóruns, sendo necessário adaptar a profundidade conforme o público.</p>
+          <p>Então um uso muito forte de Projeto seria este:</p>
+          <h3>Projeto: Resumos Estratégicos e Apresentações</h3>
+          <p>Objetivo do Projeto:
+Transformar qualquer demanda educacional em materiais de apresentação adaptados ao público.</p>
+          <p>Entradas padrão:</p>
+          <ul>
+            <li>Briefing</li>
+            <li>Proposta</li>
+            <li>Cronograma</li>
+            <li>Objetivo</li>
+            <li>Público da apresentação</li>
+          </ul>
+          <p>Saídas padrão:</p>
+          <ul>
+            <li>Resumo executivo</li>
+            <li>Versão para público externo</li>
+            <li>Versão aprofundada para líderes</li>
+            <li>Fala de apresentação</li>
+            <li>Bullets para slide</li>
+            <li>Próxima etapa</li>
+            <li>Pontos críticos para validação</li>
+          </ul>
+        </section>
+
+        <section class="section" id="s8">
+          <div class="section-mark">◆</div>
+          <h2>8. O modelo aplicado na aula e como ampliar</h2>
+          <p>Na aula prática, o modelo construído foi este:</p>
+          <h3>Modelo-base</h3>
+          <p>Uma entrada principal -&gt; Saídas obrigatórias padronizadas</p>
+          <p>Ou seja, o Projeto foi pensado para receber um contexto inicial e devolver um conjunto de entregas já estruturadas, em vez de depender de muitas idas e vindas.</p>
+          <h3>Como ampliar para possibilidades reais</h3>
+          <p>No contexto desse tipo de operação, isso pode ir além de:</p>
+          <ul>
+            <li>Objetivo do treinamento</li>
+            <li>Convite</li>
+            <li>Resumo</li>
+            <li>Estrutura de slides</li>
+          </ul>
+          <p>Também pode incluir:</p>
+          <ul>
+            <li>Leitura do briefing</li>
+            <li>Diagnóstico da dor do negócio</li>
+            <li>Versão comercial da proposta</li>
+            <li>Versão resumida para cliente</li>
+            <li>Versão aprofundada para líderes</li>
+            <li>Lista de pendências antes da validação</li>
+            <li>Organização do fluxo por etapa</li>
+            <li>Texto para alinhamento com comunicação</li>
+            <li>Roteiro de reunião</li>
+            <li>Checklist de entregáveis</li>
+          </ul>
+        </section>
+
+        <section class="section" id="s9">
+          <div class="section-mark">◆</div>
+          <h2>9. Quando usar Projeto e quando não usar</h2>
+          <h3>Usar Projeto quando:</h3>
+          <ul>
+            <li>O trabalho tiver continuidade</li>
+            <li>Houver vários arquivos ligados ao mesmo tema</li>
+            <li>Existir mais de uma etapa</li>
+            <li>For importante manter padrão</li>
+            <li>Houver necessidade de voltar depois ao mesmo contexto</li>
+          </ul>
+          <h3>Não precisar de Projeto quando:</h3>
+          <ul>
+            <li>A tarefa for isolada</li>
+            <li>A dúvida for rápida</li>
+            <li>Não existir continuidade</li>
+          </ul>
+        </section>
+
+        <section class="section" id="s10">
+          <div class="section-mark">◆</div>
+          <h2>10. Resumo final</h2>
+          <p>Projeto no ChatGPT é um ambiente de trabalho contínuo.</p>
+          <p>Serve para reunir arquivos, instruções e conversas de um mesmo tema, manter o contexto, reduzir retrabalho e padronizar a produção.</p>
+          <p>Em operações desse tipo, Projeto é especialmente útil porque o trabalho real envolve:</p>
+          <ul>
+            <li>Transformar dores do negócio em solução educacional</li>
+            <li>Coordenar fluxo entre áreas</li>
+            <li>Validar proposta, cronograma e entregáveis</li>
+            <li>Resumir estratégias para públicos diferentes</li>
+            <li>Apresentar projetos de forma recorrente</li>
+            <li>Reduzir tempo gasto com consolidação e PPTs</li>
+          </ul>
+          <p>Projeto é um contexto fixo de trabalho para que o ChatGPT passe a atuar com memória, padrão e continuidade dentro de uma operação real.</p>
+        </section>
+      </main>
+    </div>
+
+    <div class="signature">ADRIELE ALMEIDA | ESTRATEGISTA DIGITAL</div>
+  </div>
+</body>
 </html>
